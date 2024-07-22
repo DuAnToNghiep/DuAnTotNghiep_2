@@ -39,5 +39,6 @@ class ProductImage extends Model
     public function getImageUrlAttribute(): string
     {
         return asset('uploads/products/' . $this->image);
+        return
     }
 }
