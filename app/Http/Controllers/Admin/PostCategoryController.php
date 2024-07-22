@@ -42,7 +42,7 @@ class PostCategoryController extends Controller
         PostCategory::create([
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
-            'slug' => 'blog' . '-'. $slug,
+            'slug' => 'blog' . '-' . $slug,
         ]);
 
         toastr()->success(__('backend.Post Category created successfully'));
@@ -88,7 +88,7 @@ class PostCategoryController extends Controller
 
         $category->name = $data['name'] ?? $category->name;
         $category->description = $data['description'] ?? $category->description;
-        $category->slug = 'blog' . '-'. $slug ?? $category->slug;
+        $category->slug = 'blog' . '-' . $slug ?? $category->slug;
         $category->save();
 
         toastr()->success(__('backend.Post Category updated successfully'));
@@ -108,16 +108,5 @@ class PostCategoryController extends Controller
         $category->delete();
         toastr()->success(__('backend.Post Category deleted successfully'));
         return redirect()->route('admin.post-category.index');
-    }
-
-    protected function checkSlug($name)
-    {
-        $checkSlug = PostCategory::where('slug', Str::slug($name))->exists();
-        if ($checkSlug) {
-            $slug = Str::slug($name) . '-' . uniqid();
-        } else {
-            $slug = Str::slug($name);
-        }
-        return $slug;
     }
 }
