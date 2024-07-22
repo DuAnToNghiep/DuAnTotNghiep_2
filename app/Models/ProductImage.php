@@ -32,4 +32,12 @@ class ProductImage extends Model
     {
         return asset('uploads/products/' . $this->image);
     }
+    public function getImageUrlAttribute(): string
+    {
+        return asset('uploads/products/' . $this->image);
+    }
+    public function getImageUrlAttribute(): string
+    {
+        return asset('uploads/products/' . $this->image);
+    }
 }
