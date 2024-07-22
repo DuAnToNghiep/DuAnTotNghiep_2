@@ -109,4 +109,15 @@ class PostCategoryController extends Controller
         toastr()->success(__('backend.Post Category deleted successfully'));
         return redirect()->route('admin.post-category.index');
     }
+
+    protected function checkSlug($name)
+    {
+        $checkSlug = PostCategory::where('slug', Str::slug($name))->exists();
+        if ($checkSlug) {
+            $slug = Str::slug($name) . '-' . uniqid();
+        } else {
+            $slug = Str::slug($name);
+        }
+        return $slug;
+    }
 }
