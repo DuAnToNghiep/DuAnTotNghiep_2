@@ -23,6 +23,10 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (auth()->attempt($credentials)) {
+<<<<<<< HEAD
+=======
+            toastr()->success('Đăng nhập thành công!');
+>>>>>>> d3f87d19688e1c553938f31d803cd2f6b534a04d
             return redirect()->route('frontend.home');
         }
 
