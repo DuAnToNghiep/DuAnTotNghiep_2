@@ -80,7 +80,6 @@ class CartController extends Controller
         ));
 
         return response()->json(['success' => true, 'message' => __('frontend.Product added to cart!')]);
-
     }
 
     public function update(Request $request)
@@ -146,4 +145,11 @@ class CartController extends Controller
         }
         return $price;
     }
+    // private function price($price, $discount)
+    // {
+    //     if ($discount) {
+    //         $price = $price - ($price * $discount / 100);
+    //     }
+    //     return $price;
+    // }
 }
