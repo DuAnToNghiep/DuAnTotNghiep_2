@@ -20,10 +20,26 @@ class BlogController extends Controller
             ->when($request->query('title'), function ($query, $title) {
                 $query->where('title', 'like', "%{$title}%");
             })
-            ->paginate(10);
-        ;
+            ->paginate(10);;
         $title = $request->query('title');
 
-        return view('frontend.pages.blog', compact('postCategories', 'posts','title'));
+        return view('frontend.pages.blog', compact('postCategories', 'posts', 'title'));
     }
+    // public function index(Request $request)
+    // {
+    //     $postCategories = PostCategory::get();
+    //     $posts = Post::with('postCategory')->paginate(10);
+    //     $posts = Post::query()
+    //         ->when($request->query('category'), function ($query, $category) {
+    //             $query->where('category_id', $category);
+    //         })
+    //         ->when($request->query('title'), function ($query, $title) {
+    //             $query->where('title', 'like', "%{$title}%");
+    //         })
+    //         ->paginate(10);
+    //     ;
+    //     $title = $request->query('title');
+
+    //     return view('frontend.pages.blog', compact('postCategories', 'posts','title'));
+    // }
 }
