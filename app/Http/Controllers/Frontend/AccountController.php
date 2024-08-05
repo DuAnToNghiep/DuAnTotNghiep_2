@@ -13,7 +13,7 @@ class AccountController extends Controller
 {
     public function index()
     {
-        $orders = Order::where('user_id', auth()->user()->id)->paginate(10);
+        $orders = Order::where('user_id', auth()->user()->id)->orderByDesc('id')->paginate(10);
         return view('frontend.pages.account', compact('orders'));
     }
 
@@ -68,4 +68,15 @@ class AccountController extends Controller
             return redirect()->back()->with('error', __('frontend.Order not found.'));
         }
     }
+    // public function orderCancel($id)
+    // {
+    //     $order = Order::find($id);
+    //     if ($order) {
+    //         $order->order_status = 'cancelled';
+    //         $order->save();
+    //         return redirect()->back()->with('success', __('frontend.Order has been cancelled successfully.'));
+    //     } else {
+    //         return redirect()->back()->with('error', __('frontend.Order not found.'));
+    //     }
+    // }
 }
