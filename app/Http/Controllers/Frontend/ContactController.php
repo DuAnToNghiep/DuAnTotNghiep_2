@@ -54,9 +54,5 @@ class ContactController extends Controller
         $contact->delete();
         toastr()->success(__('frontend.Contact deleted successfully.'));
         return redirect()->route('admin.contact.index');
-        //   $contact = Contact::find($id);
-        //   $contact->delete();
-        //   toastr()->success(__('frontend.Contact deleted successfully.'));
-        //   return redirect()->route('admin.contact.index');
     }
 }
