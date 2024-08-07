@@ -256,5 +256,10 @@ class CheckoutController extends Controller
             $returnData['Message'] = 'Unknow error';
             return redirect()->route('frontend.home')->with('error', 'Đơn hàng không thanh toán thành công');
         }
+        // } catch (\Exception $e) {
+        //     $returnData['RspCode'] = '99';
+        //     $returnData['Message'] = 'Unknow error';
+        //     return redirect()->route('frontend.home')->with('error', 'Đơn hàng không thanh toán thành công');
+        // }
     }
 }
