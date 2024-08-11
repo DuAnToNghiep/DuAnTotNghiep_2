@@ -40,5 +40,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect(route('frontend.login'))->with('success', __('frontend.You have been logged out.'));
+        // return redirect(route('frontend.login'))->with('success', __('frontend.You have been logged out.'));
     }
 }
