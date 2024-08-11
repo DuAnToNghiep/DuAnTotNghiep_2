@@ -85,4 +85,8 @@ class ProductCommentController extends Controller
     {
         //
     }
+    // public function destroy(string $id)
+    // {
+    //     //
+    // }
 }
