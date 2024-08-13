@@ -51,11 +51,11 @@ class ProductDetailsController extends Controller
         return response()->json([
             'data' => $price,
             'status' => true,
-            'message' => 'success'
+
             // return response()->json([
             //     'data' => $price,
             //     'status' => true,
-            //     'message' => 'success'
+            'message' => 'success'
         ], 200);
     }
 }
