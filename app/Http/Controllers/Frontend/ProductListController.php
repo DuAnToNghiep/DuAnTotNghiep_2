@@ -28,7 +28,7 @@ class ProductListController extends Controller
             ->when($category, function ($query, $category) {
                 $query->where('product_category_id', $category);
             })
-            ->when($priceMin && $priceMax, function ($query) use($priceMin, $priceMax){
+            ->when($priceMin && $priceMax, function ($query) use ($priceMin, $priceMax) {
                 $query->whereBetween('price', [$priceMin, $priceMax]);
             })
             ->when($color, function ($query, $color) {
@@ -48,5 +48,6 @@ class ProductListController extends Controller
             ->paginate($limit);
 
         return view('frontend.pages.product-lists', compact('products'));
+        // return view('frontend.pages.product-lists', compact('products'));
     }
 }
