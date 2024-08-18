@@ -43,6 +43,7 @@ class ProductListController extends Controller
             })
             ->when($condition, function ($query, $condition) {
                 $query->where('condition', $condition);
+                // $query->where('condition', $condition);
             })
             ->orderBy($sortBy, $sort)
             ->paginate($limit);
