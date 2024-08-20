@@ -132,7 +132,6 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [ProductController::class, 'edit'])->name('admin.product.edit')->middleware(['permission:update product management']);
             Route::patch('/{id}', [ProductController::class, 'update'])->name('admin.product.update');
             Route::get('/{id}', [ProductController::class, 'destroy'])->name('admin.product.destroy')->middleware(['permission:delete product management']);
-
         });
 
         Route::group(['prefix' => 'role'], function () {
@@ -169,7 +168,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin.users.index')->middleware(['permission:read user management']);
             Route::get('/view/{id}', [UserController::class, 'show'])->name('admin.users.show')->middleware(['permission:read user management']);
-            Route::get('/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['permission:delete user management']);
+            // Route::get('/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['permission:delete user management']);
         });
     });
 });
