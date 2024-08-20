@@ -18,22 +18,23 @@
                         <div class="mb-4">
                             <label for="product_title" class="form-label">Role Name</label>
                             <input type="text" placeholder="Type here"
-                                   class="form-control @error('name') is-invalid @enderror" id="product_title" name="name"
-                                   value="{{ old('name') }}">
+                                class="form-control @error('name') is-invalid @enderror" id="product_title" name="name"
+                                value="{{ old('name') }}">
                             @error('name')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-4">
                             <label for="product_title" class="form-label">Import From Role</label>
                             <select class="form-select" name="role_id">
                                 <option value="">Select Role</option>
-                                @foreach($roles as $role)
+                                @foreach ($roles as $role)
                                     <option value="{{ $role->id }}">{{ $role->name }}</option>
                                 @endforeach
                             </select>
                             @error('role_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
