@@ -19,7 +19,8 @@
 <script src="{{asset('backend/assets/vendor/datatable-pdfmake/vfs_fonts.js')}}"></script>
 <script src="{{asset('backend/assets/vendor/datatable-pdfmake/pdfmake.min.js')}}"></script>
 <script src="{{asset('backend/assets/vendor/datatable-jszip/jszip.min.js')}}"></script>
-<script src="{{asset('backend/assets/vendor/datatable-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{asset('backend/assets/vendor/datatable-jszip/jszip.min.js')}}"></script>
+{{-- <script src="{{asset('backend/assets/vendor/datatable-responsive/js/dataTables.responsive.min.js')}}"></script> --}}
 <!-- End Datatable Script -->
 @stack('scripts')
 <script>
