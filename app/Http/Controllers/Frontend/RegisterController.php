@@ -28,9 +28,12 @@ class RegisterController extends Controller
         $user = User::create($data);
 
         auth()->login($user);
-
         event(new Registered($user));
 
         return redirect()->route('frontend.home');
+
+        // event(new Registered($user));
+
+        // return redirect()->route('frontend.home');
     }
 }
