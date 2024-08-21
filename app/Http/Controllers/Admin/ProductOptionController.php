@@ -76,6 +76,9 @@ class ProductOptionController extends Controller
             'name' => $data['name'] ?? $productOption->name,
             'type' => $data['type'] ?? $productOption->type,
             'value' => $data['value'] ?? $productOption->value,
+            'name' => $data['name'] ?? $productOption->name,
+            'type' => $data['type'] ?? $productOption->type,
+            'value' => $data['value'] ?? $productOption->value,
         ]);
 
         toastr()->success(__('backend.Product Option updated successfully'));
