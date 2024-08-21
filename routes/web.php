@@ -158,7 +158,12 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', [OrderController::class, 'index'])->name('admin.order.index')->middleware(['permission:read order management']);
             Route::get('/show/{id}', [OrderController::class, 'show'])->name('admin.order.show')->middleware(['permission:read order management']);
+<<<<<<< HEAD
+            Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit')->middleware(['permission:update order management']);
+            Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+=======
             Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update')->middleware(['permission:update order management']);
+>>>>>>> d3f87d19688e1c553938f31d803cd2f6b534a04d
             Route::get('/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy')->middleware(['permission:delete order management']);
         });
 
@@ -213,7 +218,10 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
     Route::prefix('/my-account')->group(function () {
+<<<<<<< HEAD
+=======
         Route::post('/change-password', [AccountController::class, 'changePassword'])->name('frontend.user.change-password');
+>>>>>>> d3f87d19688e1c553938f31d803cd2f6b534a04d
         Route::get('/', [AccountController::class, 'index'])->name('frontend.user.index');
         Route::patch('/{id}', [AccountController::class, 'update'])->name('frontend.user.update');
         Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('frontend.user.order-detail');
