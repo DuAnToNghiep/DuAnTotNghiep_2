@@ -8,8 +8,8 @@
         </div>
         @can('create role management')
             <div>
-                <a href="{{route('admin.role.create')}}"
-                   class="btn btn-primary btn-sm rounded">{{ __('backend.Create new') }}</a>
+                <a href="{{ route('admin.role.create') }}"
+                    class="btn btn-primary btn-sm rounded">{{ __('backend.Create new') }}</a>
             </div>
         @endcan
     </div>
@@ -22,5 +22,12 @@
     </div>
 @endsection
 @push('scripts')
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
+    {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
     {{ $dataTable->scripts(attributes: ['type' => 'module']) }}
 @endpush
