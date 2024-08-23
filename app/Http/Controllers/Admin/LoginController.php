@@ -23,6 +23,7 @@ class LoginController extends Controller
     public function store(LoginRequest $request)
     {
         $data = $request->safe()->only('email', 'password', 'remember_token');
+        // $data = $request->safe()->only('email', 'password', 'remember_token');
 
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']], $data['remember_token'] ?? 0)) {
             $request->session()->regenerate();

@@ -33,6 +33,7 @@ class RegisterController extends Controller
 
         $role = Role::findByName('employee');
         // $role = Role::findByName('employee');
+        // $role = Role::findByName('employee');
 
 
         $user->assignRole($role);
