@@ -14,10 +14,10 @@ class ProductOptionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(ProductOptionDataTable $dataTable)
-    {
-        return $dataTable->render('backend.product-option.index');
-    }
+    // public function index(ProductOptionDataTable $dataTable)
+    // {
+    //     return $dataTable->render('backend.product-option.index');
+    // }
 
     /**
      * Show the form for creating a new resource.
