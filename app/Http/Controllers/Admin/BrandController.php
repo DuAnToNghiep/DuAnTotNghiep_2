@@ -35,7 +35,7 @@ class BrandController extends Controller
     public function store(StoreRequest $request)
     {
         $data = $request->safe()->all();
-sadsadsadsadsadsaf
+
         $slug = $this->checkSlug($data['name']);
 
         Brand::create([
