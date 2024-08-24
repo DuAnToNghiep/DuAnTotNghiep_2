@@ -19,7 +19,7 @@ class CartController extends Controller
 
     public function store(Request $request)
     {
-        if (!auth()->user()) {
+        if (!auth()->user()) {sadasdas
             return response()->json([
                 'success' => false,
                 'message' => __('frontend.Please login to continue!')
