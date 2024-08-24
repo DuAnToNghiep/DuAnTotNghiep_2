@@ -100,128 +100,128 @@ class ProductController extends Controller
         return view('backend.product.detail', compact('products', 'images', 'product', 'comments'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $product = Product::findOrFail($id);
-        $brands = Brand::get();
-        $categories = ProductCategory::get();
-        $colors = ProductOption::where('type', 'color')->get();
-        $sizes = ProductOption::where('type', 'size')->get();
-        return view('backend.product.edit', compact('product', 'brands', 'categories', 'colors', 'sizes'));
-    }
+//     /**
+//      * Show the form for editing the specified resource.
+//      */
+//     public function edit(string $id)
+//     {
+//         $product = Product::findOrFail($id);
+//         $brands = Brand::get();
+//         $categories = ProductCategory::get();
+//         $colors = ProductOption::where('type', 'color')->get();
+//         $sizes = ProductOption::where('type', 'size')->get();
+//         return view('backend.product.edit', compact('product', 'brands', 'categories', 'colors', 'sizes'));
+//     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateRequest $request, string $id)
-    {
-        $data = $request->safe()->all();
-        logger($data);
-        $product = Product::findOrFail($id);
+//     /**
+//      * Update the specified resource in storage.
+//      */
+//     public function update(UpdateRequest $request, string $id)
+//     {
+//         $data = $request->safe()->all();
+//         logger($data);
+//         $product = Product::findOrFail($id);
 
-        $slug = $this->checkSlug($data['product_name']);
+//         $slug = $this->checkSlug($data['product_name']);
 
-        if (isset($data['thumbnail']) && $data['thumbnail']) {
-            $thumbnail = Files::upload($data['thumbnail'], 'products');
-        } else {
-            $thumbnail = $product->thumbnail;
-        }
+//         if (isset($data['thumbnail']) && $data['thumbnail']) {
+//             $thumbnail = Files::upload($data['thumbnail'], 'products');
+//         } else {
+//             $thumbnail = $product->thumbnail;
+//         }
 
-        $product->update([
-            'brand_id' => $data['brand_id'] ?? $product->brand_id,
-            'product_category_id' => $data['category_id'] ?? $product->product_category_id,
-            'name' => $data['product_name'] ?? $product->name,
-            'subtitle' => $data['sub_content'] ?? $product->subtitle,
-            'description' => $data['description'] ?? $product->description,
-            'thumbnail' => $thumbnail,
-            'slug' => $slug,
-            'price' => $data['price'] ?? $product->price,
-            'discount' => $data['discount'] ?? $product->discount,
-            'condition' => $data['condition'] ?? $product->condition,
-            'is_active' => $data['status'] ?? $product->is_active,
-            'sku' => $data['sku'] ?? $product->sku,
-        ]);
+//         $product->update([
+//             'brand_id' => $data['brand_id'] ?? $product->brand_id,
+//             'product_category_id' => $data['category_id'] ?? $product->product_category_id,
+//             'name' => $data['product_name'] ?? $product->name,
+//             'subtitle' => $data['sub_content'] ?? $product->subtitle,
+//             'description' => $data['description'] ?? $product->description,
+//             'thumbnail' => $thumbnail,
+//             'slug' => $slug,
+//             'price' => $data['price'] ?? $product->price,
+//             'discount' => $data['discount'] ?? $product->discount,
+//             'condition' => $data['condition'] ?? $product->condition,
+//             'is_active' => $data['status'] ?? $product->is_active,
+//             'sku' => $data['sku'] ?? $product->sku,
+//         ]);
 
-        if (isset($data['size']) && $data['size']
-            && isset($data['color']) && $data['color']
-            && isset($data['stock']) && $data['stock']
-            && isset($data['price_option']) && $data['price_option']) {
-            ProductOptionValue::where('product_id', $product->id)->delete();
+//         if (isset($data['size']) && $data['size']
+//             && isset($data['color']) && $data['color']
+//             && isset($data['stock']) && $data['stock']
+//             && isset($data['price_option']) && $data['price_option']) {
+//             ProductOptionValue::where('product_id', $product->id)->delete();
 
-            $this->createProductOptionValue($product, $data);
-        }
+//             $this->createProductOptionValue($product, $data);
+//         }
 
-        if (isset($data['images']) && $data['images']) {
-            ProductImage::where('product_id', $product->id)->delete();
+//         if (isset($data['images']) && $data['images']) {
+//             ProductImage::where('product_id', $product->id)->delete();
 
-            $this->createProductImage($product, $data);
-        }
+//             $this->createProductImage($product, $data);
+//         }
 
-        toastr()->success(__('backend.Product updated successfully'));
-        return redirect()->route('admin.product.index');
-    }
+//         toastr()->success(__('backend.Product updated successfully'));
+//         return redirect()->route('admin.product.index');
+//     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        Product::findOrFail($id)?->delete();
+//     /**
+//      * Remove the specified resource from storage.
+//      */
+//     public function destroy(string $id)
+//     {
+//         Product::findOrFail($id)?->delete();
 
-        toastr()->success(__('backend.Product deleted successfully'));
+//         toastr()->success(__('backend.Product deleted successfully'));
 
-        return redirect()->route('admin.product.index');
-    }
+//         return redirect()->route('admin.product.index');
+//     }
 
-    protected function checkSlug($name)
-    {
-        $checkSlug = Product::where('slug', Str::slug($name))->exists();
-        if ($checkSlug) {
-            $slug = Str::slug($name) . '-' . uniqid();
-        } else {
-            $slug = Str::slug($name);
-        }
-        return $slug;
-    }
+//     protected function checkSlug($name)
+//     {
+//         $checkSlug = Product::where('slug', Str::slug($name))->exists();
+//         if ($checkSlug) {
+//             $slug = Str::slug($name) . '-' . uniqid();
+//         } else {
+//             $slug = Str::slug($name);
+//         }
+//         return $slug;
+//     }
 
-    protected function createProductOptionValue($product, $data): void
-    {
-        foreach ($data['color'] as $key => $value) {
-            ProductOptionValue::create([
-                'product_id' => $product->id,
-                'color_id' => $value,
-                'size_id' => $data['size'][$key],
-                'in_stock' => $data['stock'][$key],
-                'price' => $data['price_option'][$key],
-            ]);
-        }
-    }
+//     protected function createProductOptionValue($product, $data): void
+//     {
+//         foreach ($data['color'] as $key => $value) {
+//             ProductOptionValue::create([
+//                 'product_id' => $product->id,
+//                 'color_id' => $value,
+//                 'size_id' => $data['size'][$key],
+//                 'in_stock' => $data['stock'][$key],
+//                 'price' => $data['price_option'][$key],
+//             ]);
+//         }
+//     }
 
-    protected function createProductImage($product, $data): void
-    {
-        $images = [];
-        foreach ($data['images'] as $image) {
-            $images[] = Files::upload($image, 'products');
-        }
+//     protected function createProductImage($product, $data): void
+//     {
+//         $images = [];
+//         foreach ($data['images'] as $image) {
+//             $images[] = Files::upload($image, 'products');
+//         }
 
-        foreach ($images as $image) {
-            ProductImage::create([
-                'product_id' => $product->id,
-                'image' => $image,
-            ]);
-        }
-    }
+//         foreach ($images as $image) {
+//             ProductImage::create([
+//                 'product_id' => $product->id,
+//                 'image' => $image,
+//             ]);
+//         }
+//     }
 
-    public function updateCommentStatus(Request $request, $commentId)
-    {
-        $comment = ProductComment::findOrFail($commentId);
-        $comment->update([
-            'is_active' => $request->status
-        ]);
-        toastr()->success(__('backend.Comment updated successfully'));
-        return redirect()->back();
-    }
-}
+//     public function updateCommentStatus(Request $request, $commentId)
+//     {
+//         $comment = ProductComment::findOrFail($commentId);
+//         $comment->update([
+//             'is_active' => $request->status
+//         ]);
+//         toastr()->success(__('backend.Comment updated successfully'));
+//         return redirect()->back();
+//     }
+// }
