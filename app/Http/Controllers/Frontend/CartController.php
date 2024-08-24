@@ -34,7 +34,15 @@ class CartController extends Controller
         $product = Product::where('id', $product_id)->first();
 
         if (!$product) {
+<<<<<<< HEAD
             return response()->json(['success' => false, 'message' => 'Sản phẩm không hợp lệ']);
+=======
+<<<<<<< HEAD
+            return response()->json(['success' => false, 'message' => __('frontend.Product not found!')]);
+=======
+            return response()->json(['success' => false, 'message' => 'Sản phẩm không hợp lệ']);
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
         }
 
         $productOptionColor = ProductOption::query()
@@ -44,7 +52,15 @@ class CartController extends Controller
             ->first();
 
         if (!$productOptionColor) {
+<<<<<<< HEAD
             return response()->json(['success' => false, 'message' => 'Màu sắc không hợp lệ']);
+=======
+<<<<<<< HEAD
+            return response()->json(['success' => false, 'message' => __('frontend.Color not found!')]);
+=======
+            return response()->json(['success' => false, 'message' => 'Màu sắc không hợp lệ']);
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
         }
 
         $productOptionSize = ProductOption::query()
@@ -53,7 +69,15 @@ class CartController extends Controller
             ->first();
 
         if (!$productOptionSize) {
+<<<<<<< HEAD
             return response()->json(['success' => false, 'message' => 'Kích thước không hợp lệ']);
+=======
+<<<<<<< HEAD
+            return response()->json(['success' => false, 'message' => __('frontend.Size not found!')]);
+=======
+            return response()->json(['success' => false, 'message' => 'Kích thước không hợp lệ']);
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
         }
 
         $productOptionValue = ProductOptionValue::query()

@@ -57,11 +57,28 @@ class OrderController extends Controller
     public function update(Request $request, string $id)
     {
         $data = $request->validate([
+<<<<<<< HEAD
             'order_status' => ['required_without:payment_status', 'string', 'max:255'],
             'payment_status' => ['required_without:order_status', 'string', 'max:255'],
         ]);
 
         $order = Order::findOrFail($id);
+=======
+<<<<<<< HEAD
+            'order_status' => ['required', 'string', 'max:255'],
+            'payment_status' => ['required', 'string', 'max:255'],
+        ]);
+
+        $order = Order::findOrFail($id);
+
+=======
+            'order_status' => ['required_without:payment_status', 'string', 'max:255'],
+            'payment_status' => ['required_without:order_status', 'string', 'max:255'],
+        ]);
+
+        $order = Order::findOrFail($id);
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
         $order->update([
             'order_status' => $data['order_status'] ?? $order->order_status,
             'payment_status' => $data['payment_status'] ?? $order->payment_status,

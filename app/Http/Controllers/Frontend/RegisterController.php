@@ -31,8 +31,16 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
+<<<<<<< HEAD
         toastr()->success('Đăng ký tài khoản thành công!');
 
+=======
+<<<<<<< HEAD
+=======
+        toastr()->success('Đăng ký tài khoản thành công!');
+
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
         return redirect()->route('frontend.home');
     }
 }

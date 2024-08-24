@@ -26,6 +26,15 @@
                             <label class="form-label d-inline-block me-2 mb-0">{{ __('backend.Payment Status') }}:</label>
                             <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" name="payment_status">
                                 <option>{{ __('backend.Change status') }}</option>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                                <option value="pending" @if($order->payment_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
+                                <option value="paid" @if($order->payment_status == 'paid') selected @endif>{{ __('backend.Paid') }}</option>
+                                <option value="refunded" @if($order->payment_status == 'refunded') selected @endif>{{ __('backend.Refunded') }}</option>
+                                <option value="cancel" @if($order->payment_status == 'cancel') selected @endif>{{ __('backend.Cancel') }}</option>
+=======
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
                                 @if($order->payment_status === 'pending')
                                     <option value="pending" @if($order->payment_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
                                     <option value="paid" @if($order->payment_status == 'paid') selected @endif>{{ __('backend.Paid') }}</option>
@@ -37,11 +46,24 @@
                                 @elseif($order->payment_status === 'cancel')
                                     <option value="cancel" @if($order->payment_status == 'cancel') selected @endif>{{ __('backend.Cancel') }}</option>
                                 @endif
+<<<<<<< HEAD
+=======
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
                             </select>
                         </br>
                             <label class="form-label d-inline-block me-2 mb-0">{{ __('backend.Status') }}:</label>
                             <select class="form-select d-inline-block mb-lg-0 mb-15 mw-200" name="order_status" @if($order->order_status === 'completed') disabled @endif>
                                 <option>{{ __('backend.Change status') }}</option>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                                <option value="pending" @if($order->order_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
+                                <option value="confirmed" @if($order->order_status == 'confirmed') selected @endif>{{ __('backend.Confirmed') }}</option>
+                                <option value="shipped" @if($order->order_status == 'shipped') selected @endif>{{ __('backend.Shipped') }}</option>
+                                <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
+=======
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
                                 @if($order->order_status === 'pending')
                                     <option value="pending" @if($order->order_status == 'pending') selected @endif>{{ __('backend.Pending') }}</option>
                                     <option value="confirmed" @if($order->order_status == 'confirmed') selected @endif>{{ __('backend.Confirmed') }}</option>
@@ -61,6 +83,10 @@
                                     <option value="completed" @if($order->order_status == 'completed') selected @endif>{{ __('backend.Completed') }}</option>
                                 @endif
 
+<<<<<<< HEAD
+=======
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
                             </select>
 
                             <button type="submit" class="btn btn-primary" href="#">{{ __('backend.Save') }}</button>
@@ -163,6 +189,19 @@
                                                 <dt>{{ __('frontend.Total') }}:</dt>
                                                 <dd><b class="h5">{{number_format($order->total, 0, '', ',')}}</b></dd>
                                             </dl>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+                                            <dl class="dlist">
+                                                <dt class="text-muted">{{ __('backend.Status') }}:</dt>
+                                                <dd>
+                                                    <span
+                                                        class="badge rounded-pill alert-success text-success">{{$order->payment_status}}</span>
+                                                </dd>
+                                            </dl>
+=======
+>>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
+>>>>>>> a8efa4fcce51b95c0e5916373672260333e74b82
                                         </article>
                                     </td>
                                 </tr>
