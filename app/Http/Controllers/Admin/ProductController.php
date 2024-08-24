@@ -214,14 +214,3 @@ class ProductController extends Controller
 //             ]);
 //         }
 //     }
-
-//     public function updateCommentStatus(Request $request, $commentId)
-//     {
-//         $comment = ProductComment::findOrFail($commentId);
-//         $comment->update([
-//             'is_active' => $request->status
-//         ]);
-//         toastr()->success(__('backend.Comment updated successfully'));
-//         return redirect()->back();
-//     }
-// }
