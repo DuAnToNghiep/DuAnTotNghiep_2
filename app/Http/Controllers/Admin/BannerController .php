@@ -42,8 +42,8 @@ class BannerController extends Controller
             'sub_title' => $data['sub_title'] ?? null,
             'image' => $data['image'],
             'status' => $data['status'],
-            'priority' => $data['priority'],gsfasfasfasf
-            'link' => $data['link'] ?? null,adascascascas
+            'priority' => $data['priority'],
+            'link' => $data['link'] ?? null,
         ]);casc
 
         toastr()->success(__('backend.Banner created successfully'));
