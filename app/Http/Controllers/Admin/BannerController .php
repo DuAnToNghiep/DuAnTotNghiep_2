@@ -42,9 +42,9 @@ class BannerController extends Controller
             'sub_title' => $data['sub_title'] ?? null,
             'image' => $data['image'],
             'status' => $data['status'],
-            'priority' => $data['priority'],
-            'link' => $data['link'] ?? null,
-        ]);
+            'priority' => $data['priority'],gsfasfasfasf
+            'link' => $data['link'] ?? null,adascascascas
+        ]);casc
 
         toastr()->success(__('backend.Banner created successfully'));
         return redirect()->route('admin.banner.index');
