@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
         Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
+        Route::get('/admin/homes/chart-data', [AdminHomeController::class, 'getChartData'])->name('admin.homes.chart-data');
 
         Route::group(['prefix' => 'banner'], function () {
             Route::get('/', [BannerController::class, 'index'])->name('admin.banner.index')->middleware(['permission:read banner management']);
@@ -156,8 +157,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', [OrderController::class, 'index'])->name('admin.order.index')->middleware(['permission:read order management']);
             Route::get('/show/{id}', [OrderController::class, 'show'])->name('admin.order.show')->middleware(['permission:read order management']);
-            Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit')->middleware(['permission:update order management']);
-            Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update');
+            Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update')->middleware(['permission:update order management']);
             Route::get('/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy')->middleware(['permission:delete order management']);
         });
 
@@ -212,6 +212,7 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
     Route::prefix('/my-account')->group(function () {
+        Route::post('/change-password', [AccountController::class, 'changePassword'])->name('frontend.user.change-password');
         Route::get('/', [AccountController::class, 'index'])->name('frontend.user.index');
         Route::patch('/{id}', [AccountController::class, 'update'])->name('frontend.user.update');
         Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('frontend.user.order-detail');
