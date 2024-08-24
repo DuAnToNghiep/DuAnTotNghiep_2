@@ -38,7 +38,7 @@
             </div>
             <div class="col-lg-3">
                 <div class="card mb-4">
-                    <div class="card-body">
+                    <div class="card-body">dsds
                         <div class="mb-4">
                             <label class="form-label">{{ __('backend.Status') }}</label>
                             <select class="form-select @error('status') is-invalid @enderror" name="status">
