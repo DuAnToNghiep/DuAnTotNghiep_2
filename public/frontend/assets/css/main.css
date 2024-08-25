@@ -10025,3 +10025,7 @@ span.fi-rs-apps {
 .rate:not(:checked) > label:hover ~ label {
     color: #deb217;
 }
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
