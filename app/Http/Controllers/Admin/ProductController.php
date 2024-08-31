@@ -53,7 +53,7 @@ class ProductController extends Controller
         $product = Product::create([
             'brand_id' => $data['brand_id'],
             'product_category_id' => $data['category_id'],
-            'name' => $data['product_name'],
+          
             'subtitle' => $data['sub_content'] ?? null,
             'description' => $data['description'] ?? null,
             'thumbnail' => $thumbnail,
