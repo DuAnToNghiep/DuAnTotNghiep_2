@@ -66,7 +66,7 @@ class ProductController extends Controller
         ]);
 
         if ($product) {
-        
+            $this->createProductOptionValue($product, $data);
         }
 
         if ($product) {
