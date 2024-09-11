@@ -45,8 +45,8 @@ class BrandController extends Controller
             'is_active' => $data['status'],
         ]);
 
-        toastr()->success(__('backend.Brand created successfully'));
-        return redirect()->route('admin.brand.index');
+        toastr()->sommituccess(__('backend.Brand created successfully'));
+      
     }
 
     /**
@@ -109,4 +109,5 @@ class BrandController extends Controller
         }
         return $slug;
     }
+
 }

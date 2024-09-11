@@ -35,10 +35,14 @@ class CartController extends Controller
 
         if (!$product) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             return response()->json(['success' => false, 'message' => __('frontend.Product not found!')]);
 =======
             return response()->json(['success' => false, 'message' => 'Sản phẩm không hợp lệ']);
 >>>>>>> d3f87d19688e1c553938f31d803cd2f6b534a04d
+=======
+            return response()->json(['success' => false, 'message' => 'Sản phẩm không hợp lệ'], 400);
+>>>>>>> 27143518977e2e48be065e235d0ab6336c711dd0
         }
 
         $productOptionColor = ProductOption::query()
@@ -49,10 +53,14 @@ class CartController extends Controller
 
         if (!$productOptionColor) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             return response()->json(['success' => false, 'message' => __('frontend.Color not found!')]);
 =======
             return response()->json(['success' => false, 'message' => 'Màu sắc không hợp lệ']);
 >>>>>>> d3f87d19688e1c553938f31d803cd2f6b534a04d
+=======
+            return response()->json(['success' => false, 'message' => 'Màu sắc không hợp lệ'], 400);
+>>>>>>> 27143518977e2e48be065e235d0ab6336c711dd0
         }
 
         $productOptionSize = ProductOption::query()
@@ -62,10 +70,14 @@ class CartController extends Controller
 
         if (!$productOptionSize) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             return response()->json(['success' => false, 'message' => __('frontend.Size not found!')]);
 =======
             return response()->json(['success' => false, 'message' => 'Kích thước không hợp lệ']);
 >>>>>>> d3f87d19688e1c553938f31d803cd2f6b534a04d
+=======
+            return response()->json(['success' => false, 'message' => 'Kích thước không hợp lệ'], 400);
+>>>>>>> 27143518977e2e48be065e235d0ab6336c711dd0
         }
 
         $productOptionValue = ProductOptionValue::query()
@@ -75,7 +87,7 @@ class CartController extends Controller
             ->first();
 
         if ($productOptionValue->in_stock < $quantity) {
-            return response()->json(['success' => false, 'message' => __('frontend.Product is out of stock!')]);
+            return response()->json(['success' => false, 'message' => __('frontend.Product is out of stock!')], 400);
         }
 
         // add the product to cart
