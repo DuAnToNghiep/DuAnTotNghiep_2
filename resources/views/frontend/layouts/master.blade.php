@@ -34,7 +34,7 @@
         }
     </style>
     <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('frontend/assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend\assets\css\main.css') }}">
 </head>
 
 <body>

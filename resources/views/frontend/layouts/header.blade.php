@@ -66,7 +66,7 @@
         <div class="container">
             <div class="header-wrap">
                 <div class="logo logo-width-1">
-                    <a href="{{route('frontend.home')}}" class="d-flex">
+                    <a href="{{route('frontend.home')}}">
                         <img src="{{ asset('frontend/assets/imgs/Logo.png') }}" class="img-fluid" alt="Golden Era">
                     </a>
                 </div>
