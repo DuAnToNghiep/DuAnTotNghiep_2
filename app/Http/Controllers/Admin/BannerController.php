@@ -46,7 +46,7 @@ class BannerController extends Controller
             'link' => $data['link'] ?? null,
         ]);
 
-        toastr()->success(__('backend.Banner created successfully'));
+       
         return redirect()->route('admin.banner.index');
     }
 
