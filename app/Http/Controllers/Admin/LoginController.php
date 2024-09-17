@@ -26,7 +26,7 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']], $data['remember_token'] ?? 0)) {
             $request->session()->regenerate();
 
-            toastr()->success('Welcome back, ' . auth()->user()->name);
+          
             return redirect(route('admin.home'));
         }
 
