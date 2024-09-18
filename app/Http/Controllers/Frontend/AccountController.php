@@ -101,6 +101,14 @@ class AccountController extends Controller
             return redirect()->back()->with('error', __('frontend.Order not found.'));
         }
     }
+        $user = User::find(auth()->user()->id);
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->phone = $request->input('phone');
+        $user->address = $request->input('address');
+        $user->address_2 = $request->input('address_2');
+        $user->save();
 <<<<<<< HEAD
 =======
 
