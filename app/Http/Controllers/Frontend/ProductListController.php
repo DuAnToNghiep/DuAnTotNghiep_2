@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
@@ -22,12 +23,7 @@ class ProductListController extends Controller
         $name = $request->query('name');
 
         $products = Product::query()
-            ->when($name, function ($query, $name) {
-                $query->where('name', 'like', "%{$name}%");
-            })
-            ->when($category, function ($query, $category) {
-                $query->where('product_category_id', $category);
-            })
+            ->where('is_active', 1) // Chỉ lấy các sản phẩm có is_active = 1
             ->when($name, function ($query, $name) {
                 $query->where('name', 'like', "%{$name}%");
             })
@@ -47,17 +43,6 @@ class ProductListController extends Controller
                     $query->where('size_id', $size);
                 });
             })
-            ->when($size, function ($query, $size) {
-                $query->whereHas('size', function ($query) use ($size) {
-                    $query->where('size_id', $size);
-                });
-            })
-            ->when($condition, function ($query, $condition) {
-                $query->where('condition', $condition);
-            })
-            ->orderBy($sortBy, $sort)
-            ->paginate($limit);
-
             ->when($condition, function ($query, $condition) {
                 $query->where('condition', $condition);
             })

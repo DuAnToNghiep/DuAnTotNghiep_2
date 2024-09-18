@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ProductOptionController;
 use App\Http\Controllers\Admin\RegisterController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VoucherController;
 use App\Http\Controllers\Frontend\AboutController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\BlogController;
@@ -33,6 +34,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
@@ -77,10 +79,6 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 
         Route::get('/', [AdminHomeController::class, 'index'])->name('admin.home');
-<<<<<<< HEAD
-=======
-        Route::get('/admin/homes/chart-data', [AdminHomeController::class, 'getChartData'])->name('admin.homes.chart-data');
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
 
         Route::group(['prefix' => 'banner'], function () {
             Route::get('/', [BannerController::class, 'index'])->name('admin.banner.index')->middleware(['permission:read banner management']);
@@ -89,6 +87,19 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [BannerController::class, 'edit'])->name('admin.banner.edit')->middleware(['permission:update banner management']);
             Route::patch('/{id}', [BannerController::class, 'update'])->name('admin.banner.update');
             Route::get('/{id}', [BannerController::class, 'destroy'])->name('admin.banner.destroy')->middleware(['permission:delete banner management']);
+        });
+        Route::group(['prefix' => 'voucher'], function () {
+            // routes/web.php
+
+
+// Route để xử lý việc áp dụng voucher
+            Route::post('/voucher/apply', [VoucherController::class, 'applyVoucher'])->name('voucher.apply');
+            Route::get('/', [VoucherController::class, 'index'])->name('admin.voucher.index')->middleware(['permission:read voucher management']);
+            Route::get('/create', [VoucherController::class, 'create'])->name('admin.voucher.create')->middleware(['permission:create voucher management']);
+            Route::post('/', [VoucherController::class, 'store'])->name('admin.voucher.store');
+            Route::get('/edit/{id}', [VoucherController::class, 'edit'])->name('admin.voucher.edit')->middleware(['permission:update voucher management']);
+            Route::patch('/{id}', [VoucherController::class, 'update'])->name('admin.voucher.update');
+            Route::get('/{id}', [VoucherController::class, 'destroy'])->name('admin.voucher.destroy')->middleware(['permission:delete voucher management']);
         });
 
         Route::group(['prefix' => 'brand'], function () {
@@ -160,12 +171,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::group(['prefix' => 'order'], function () {
             Route::get('/', [OrderController::class, 'index'])->name('admin.order.index')->middleware(['permission:read order management']);
             Route::get('/show/{id}', [OrderController::class, 'show'])->name('admin.order.show')->middleware(['permission:read order management']);
-<<<<<<< HEAD
-            Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit')->middleware(['permission:update order management']);
-            Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update');
-=======
             Route::patch('/{id}', [OrderController::class, 'update'])->name('admin.order.update')->middleware(['permission:update order management']);
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
             Route::get('/{id}', [OrderController::class, 'destroy'])->name('admin.order.destroy')->middleware(['permission:delete order management']);
         });
 
@@ -177,14 +183,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::group(['prefix' => 'users'], function () {
             Route::get('/', [UserController::class, 'index'])->name('admin.users.index')->middleware(['permission:read user management']);
-<<<<<<< HEAD
-            Route::get('/create', [UserController::class, 'create'])->name('admin.users.create')->middleware(['permission:create user management']);
-            Route::post('/', [UserController::class, 'store'])->name('admin.users.store');
-            Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit')->middleware(['permission:edit user management']);
-            Route::patch('/{id}', [UserController::class, 'update'])->name('admin.users.update');
-=======
             Route::get('/view/{id}', [UserController::class, 'show'])->name('admin.users.show')->middleware(['permission:read user management']);
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
             Route::get('/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy')->middleware(['permission:delete user management']);
         });
     });
@@ -194,6 +193,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/', [HomeController::class, 'index'])->name('frontend.home');
 Route::get('/order-track', [HomeController::class, 'orderTrack'])->name('order.track');
 Route::post('product/track/order', [HomeController::class, 'productTrackOrder'])->name('product.track.order');
+// web.php
 
 
 Route::get('/about-us', [AboutController::class, 'index']);
@@ -227,19 +227,16 @@ Route::group(['middleware' => ['auth:web', 'verified']], function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
 
     Route::prefix('/my-account')->group(function () {
-<<<<<<< HEAD
-=======
         Route::post('/change-password', [AccountController::class, 'changePassword'])->name('frontend.user.change-password');
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
         Route::get('/', [AccountController::class, 'index'])->name('frontend.user.index');
         Route::patch('/{id}', [AccountController::class, 'update'])->name('frontend.user.update');
         Route::get('/order-detail/{id}', [AccountController::class, 'orderDetail'])->name('frontend.user.order-detail');
-        Route::get('/order-cancel/{id}', [AccountController::class, 'orderCancel'])->name('frontend.user.order-cancel');
+        Route::post('/order-cancel/{id}', [AccountController::class, 'orderCancel'])->name('frontend.user.order-cancel');
     });
 });
 
 Route::get('/payment-return', [CheckoutController::class, 'paymentReturn'])->name('frontend.checkout.vnpay');
-
+Route::post('/cart/apply-voucher', [CartController::class, 'applyVoucher'])->name('cart.apply-voucher');
 Route::get('/cart', [CartController::class, 'index'])->middleware('auth:web')->name('cart');
 Route::post('/cart/add', [CartController::class, 'store'])->name('cart.add');
 Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');

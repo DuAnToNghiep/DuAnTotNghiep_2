@@ -24,6 +24,7 @@ class ProductController extends Controller
      */
     public function index(ProductDataTable $productDataTable)
     {
+        
         return $productDataTable->render('backend.product.index');
     }
 
@@ -32,6 +33,8 @@ class ProductController extends Controller
      */
     public function create()
     {
+
+   
         $brands = Brand::get();
         $categories = ProductCategory::get();
         $colors = ProductOption::where('type', 'color')->get();
@@ -72,6 +75,9 @@ class ProductController extends Controller
         if ($product) {
             $this->createProductImage($product, $data);
         }
+
+
+        
 
         toastr()->success(__('backend.Product created successfully'));
         return redirect()->route('admin.product.index');
@@ -224,13 +230,4 @@ class ProductController extends Controller
         toastr()->success(__('backend.Comment updated successfully'));
         return redirect()->back();
     }
-    // public function updateCommentStatus(Request $request, $commentId)
-    // {
-    //     $comment = ProductComment::findOrFail($commentId);
-    //     $comment->update([
-    //         'is_active' => $request->status
-    //     ]);
-    //     toastr()->success(__('backend.Comment updated successfully'));
-    //     return redirect()->back();
-    // }
 }

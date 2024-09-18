@@ -16,7 +16,7 @@ class BannerController extends Controller
      */
     public function index(BannerDataTable $bannerDataTable)
     {
-        return $bannerDataTable->render('backend.banner.index');
+    
     }
 
     /**
@@ -46,7 +46,6 @@ class BannerController extends Controller
             'link' => $data['link'] ?? null,
         ]);
 
-        toastr()->success(__('backend.Banner created successfully'));
         return redirect()->route('admin.banner.index');
     }
 
@@ -103,8 +102,4 @@ class BannerController extends Controller
         toastr()->success(__('backend.Banner deleted successfully'));
         return redirect()->route('admin.banner.index');
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 2a7a1bea2d3cf88d390af0aefb42db3259e7a90b
