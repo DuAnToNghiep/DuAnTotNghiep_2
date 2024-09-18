@@ -62,6 +62,50 @@
                     </div>
                 </div> <!-- card end// -->
             </div>
+        </div>
+        <div class="table-responsive order_table text-center">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th colspan="2">{{ __('frontend.Product') }}</th>
+                    <th>{{ __('frontend.Size') }}</th>
+                    <th>{{ __('frontend.Color') }}</th>
+                    <th>{{ __('frontend.Total') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($carts as $cart)
+                    <tr>
+                        <td class="image product-thumbnail"><img
+                                src="{{ asset('uploads/products/' . $cart->options->image) }}"
+                                alt="#"></td>
+                        <td>
+                            <h5>
+                                <a href="{{ route('product.detail', $cart->id) }}">{{$cart->name}}</a>
+                            </h5> <span class="product-qty">x {{$cart->qty}}</span>
+                        </td>
+                        <td>{{$cart->options->size}}</td>
+                        <td>{{$cart->options->color}}</td>
+                        <td>{{ formatPrice($cart->price) }} đ</td>
+                    </tr>
+                @endforeach
+                <tr>
+                    <th>{{ __('frontend.Total') }}</th>
+                    <td colspan="2" class="product-subtotal"><span
+                            class="font-xl text-brand fw-900" id="total-amount">{{ formatPrice(\Cart::subTotal()) }} đ</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mb-25">
+            <h5>{{ __('frontend.Apply Voucher') }}</h5>
+            <div class="form-group">
+                <input type="text" id="voucher_code" name="voucher_code" placeholder="Enter voucher code">
+                <button type="button" id="apply-voucher" class="btn btn-fill-out btn-block ">{{ __('frontend.Apply') }}</button>
+            </div>
+            <div id="discount-info"></div>
+        </div>
             <div class="col-lg-3">
                 <div class="card mb-4">
                     <div class="card-body">
